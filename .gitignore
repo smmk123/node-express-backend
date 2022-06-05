@@ -3,6 +3,10 @@ node_modules
 
 combined.log
 
+.travis.yml
+
+contributing.md
+
 # yarn error logs
 yarn-error.log
 
