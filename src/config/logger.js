@@ -1,5 +1,6 @@
 const winston = require('winston');
 const config = require('./config');
+require('winston-mongodb');
 
 const enumerateErrorFormat = winston.format((info) => {
   if (info instanceof Error) {
@@ -20,10 +21,16 @@ const logger = winston.createLogger({
     new winston.transports.Console({
       stderrLevels: ['error'],
     }),
+    new winston.transports.MongoDB({
+      db: `${process.env.MONGODB_URL}`,
+      level: 'info',
+      metaKey: 'meta',
+      options: { useUnifiedTopology: true },
+    }),
     new winston.transports.File({
       filename: 'combined.log',
       level: 'info',
-      format: winston.format.json()
+      format: winston.format.json(),
     }),
   ],
 });
