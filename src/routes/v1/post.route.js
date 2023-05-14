@@ -1,20 +1,3 @@
-const express = require('express');
-const validate = require('../../middlewares/validate');
-const auth = require('../../middlewares/auth');
-const postController = require('../../controllers/post.controller');
-const postValidation = require('../../validations/post.validation');
-
-const router = express.Router();
-
-router
-  .route('/')
-  .get(validate(postValidation.getPosts), postController.getPosts)
-  .post(auth('managePosts'), validate(postValidation.createPosts), postController.createPost);
-
-router.route('/:productId').get(validate(postValidation.getPosts), postController.getPosts);
-
-module.exports = router;
-
 /**
  * @swagger
  * tags:
@@ -25,9 +8,9 @@ module.exports = router;
  * @swagger
  * /posts:
  *   post:
- *     summary: Create a post
- *     description: Only admins can create posts.
- *     tags: [Posts]
+ *     summary: Create a product
+ *     description: Only admins can create other users.
+ *     tags: [Products]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -58,7 +41,7 @@ module.exports = router;
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/Posts'
+ *                $ref: '#/components/schemas/Product'
  *       "400":
  *         $ref: '#/components/responses/DuplicateEmail'
  *       "401":
@@ -67,9 +50,9 @@ module.exports = router;
  *         $ref: '#/components/responses/Forbidden'
  *
  *   get:
- *     summary: Get all posts
- *     description: serve public posts.
- *     tags: [Posts]
+ *     summary: Get all products
+ *     description: Only admins can retrieve all products.
+ *     tags: [Products]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -113,7 +96,7 @@ module.exports = router;
  *                 results:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Post'
+ *                     $ref: '#/components/schemas/User'
  *                 page:
  *                   type: integer
  *                   example: 1
