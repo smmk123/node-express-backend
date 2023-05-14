@@ -1,29 +1,29 @@
 const express = require('express');
 const validate = require('../../middlewares/validate');
 const auth = require('../../middlewares/auth');
-const productController = require('../../controllers/product.controller');
-const productValidation = require('../../validations/product.validation');
+const postController = require('../../controllers/post.controller');
+const postValidation = require('../../validations/post.validation');
 
 const router = express.Router();
 
 router
   .route('/')
-  .get(validate(productValidation.getProducts), productController.getProducts)
-  .post(auth('manageProducts'), validate(productValidation.createProduct), productController.createProduct);
+  .get(validate(postValidation.getPosts), postController.getPosts)
+  .post(auth('manageProducts'), validate(postValidation.createPosts), postController.createPost);
 
-router.route('/:productId').get(validate(productValidation.getProducts), productController.getProduct);
+router.route('/:productId').get(validate(postValidation.getPosts), postController.getPosts);
 
 module.exports = router;
 
 /**
  * @swagger
  * tags:
- *   name: Products
- *   description: Product management and retrieval
+ *   name: Posts
+ *   description: Post Managment and Retreval
  */
 /**
  * @swagger
- * /products:
+ * /posts:
  *   post:
  *     summary: Create a product
  *     description: Only admins can create other users.
