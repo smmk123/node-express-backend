@@ -21,7 +21,6 @@ const getPost = catchAsync(async (req, res) => {
 
 const getPostByName = catchAsync(async (req, res) => {
   const post = await postService.getPostByName(req.params.name);
-  // console.log(req.params.name);
   if (!post) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Product not found');
   }
@@ -29,9 +28,7 @@ const getPostByName = catchAsync(async (req, res) => {
 });
 
 const createPost = catchAsync(async (req, res) => {
-  // console.log(`pre-${JSON.stringify(req.body)}`);
   const post = await postService.createPost(req.body);
-  // console.log(`post-${JSON.stringify(req.body)}`);
   res.status(httpStatus.CREATED).send(post);
 });
 
