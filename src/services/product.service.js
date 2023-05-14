@@ -1,4 +1,3 @@
-const httpStatus = require('http-status');
 const { Product } = require('../models');
 
 /**
@@ -6,10 +5,10 @@ const { Product } = require('../models');
  * @param {Object} productBody
  * @returns {Promise<User>}
  */
- const createProduct = async (productBody) => {
-  console.log('service-'+JSON.stringify(productBody));
-    return Product.create(productBody);
-  };
+const createProduct = async (productBody) => {
+  // console.log(`service-${JSON.stringify(productBody)}`);
+  return Product.create(productBody);
+};
 /**
  * Query for users
  * @param {Object} filter - Mongo filter
@@ -19,12 +18,12 @@ const { Product } = require('../models');
  * @param {number} [options.page] - Current page (default = 1)
  * @returns {Promise<QueryResult>}
  */
- const queryProducts = async (filter, options) => {
-    const products = await Product.paginate(filter, options);
-    return products;
-  };
+const queryProducts = async (filter, options) => {
+  const products = await Product.paginate(filter, options);
+  return products;
+};
 
-  /**
+/**
  * Get user by id
  * @param {ObjectId} id
  * @returns {Promise<User>}
@@ -34,12 +33,12 @@ const getProductById = async (id) => {
 };
 
 const getProductByName = async (productName) => {
-  return Product.find({name: productName});
+  return Product.find({ name: productName });
 };
 
 module.exports = {
-    queryProducts,
-    createProduct,
-    getProductById,
-    getProductByName
-  };
+  queryProducts,
+  createProduct,
+  getProductById,
+  getProductByName,
+};

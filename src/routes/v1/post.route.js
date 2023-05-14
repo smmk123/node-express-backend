@@ -9,7 +9,7 @@ const router = express.Router();
 router
   .route('/')
   .get(validate(postValidation.getPosts), postController.getPosts)
-  .post(auth('manageProducts'), validate(postValidation.createPosts), postController.createPost);
+  .post(auth('managePosts'), validate(postValidation.createPosts), postController.createPost);
 
 router.route('/:productId').get(validate(postValidation.getPosts), postController.getPosts);
 
@@ -25,9 +25,9 @@ module.exports = router;
  * @swagger
  * /posts:
  *   post:
- *     summary: Create a product
- *     description: Only admins can create other users.
- *     tags: [Products]
+ *     summary: Create a post
+ *     description: Only admins can create posts.
+ *     tags: [Posts]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -51,14 +51,14 @@ module.exports = router;
  *               name: fake name
  *               stock: 4
  *               price: 1.99
- *               
+ *
  *     responses:
  *       "201":
  *         description: Created
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/Product'
+ *                $ref: '#/components/schemas/Posts'
  *       "400":
  *         $ref: '#/components/responses/DuplicateEmail'
  *       "401":
@@ -67,9 +67,9 @@ module.exports = router;
  *         $ref: '#/components/responses/Forbidden'
  *
  *   get:
- *     summary: Get all products
- *     description: Only admins can retrieve all products.
- *     tags: [Products]
+ *     summary: Get all posts
+ *     description: serve public posts.
+ *     tags: [Posts]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -113,7 +113,7 @@ module.exports = router;
  *                 results:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/User'
+ *                     $ref: '#/components/schemas/Post'
  *                 page:
  *                   type: integer
  *                   example: 1

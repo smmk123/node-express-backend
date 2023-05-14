@@ -51,7 +51,7 @@ module.exports = router;
  *               name: fake name
  *               stock: 4
  *               price: 1.99
- *               
+ *
  *     responses:
  *       "201":
  *         description: Created

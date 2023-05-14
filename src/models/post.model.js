@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { toJSON, paginate } = require('./plugins');
 
 const postSchema = mongoose.Schema({
-  title: { type: String, required: true, trim: true,},
+  title: { type: String, required: true, trim: true },
   date: {
     type: Number,
   },
