@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-/* eslint-disable no-undef */
 const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const catchAsync = require('../utils/catchAsync');
 const { productService } = require('../services');
+const ApiError = require('../utils/ApiError');
 
 const getProducts = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name']);

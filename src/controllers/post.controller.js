@@ -1,5 +1,5 @@
-/* eslint-disable no-undef */
 const httpStatus = require('http-status');
+const ApiError = require('../utils/ApiError');
 const pick = require('../utils/pick');
 const catchAsync = require('../utils/catchAsync');
 const { postService } = require('../services');
