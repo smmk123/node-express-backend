@@ -6,7 +6,6 @@ const { Product } = require('../models');
  * @returns {Promise<User>}
  */
 const createProduct = async (productBody) => {
-  // console.log(`service-${JSON.stringify(productBody)}`);
   return Product.create(productBody);
 };
 /**

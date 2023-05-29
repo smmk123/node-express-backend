@@ -13,6 +13,12 @@ const productSchema = mongoose.Schema({
   price: {
     type: Number,
   },
+  pictureURL: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
 });
 
 // add plugin that converts mongoose to json
